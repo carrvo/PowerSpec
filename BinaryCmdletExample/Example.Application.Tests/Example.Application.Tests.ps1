@@ -44,7 +44,6 @@ Describe "The Application" {
 		It "shall be the same" {
 			$digits = 2, 4, 3
 			$digits |
-				Sort-Object -Descending {(++$script:i)} |
 				ConvertTo-Base -SourceBase 10 -DestinationBase 10 -DataStructure $dataStructure |
 				Should Be $digits
 		}
@@ -52,9 +51,8 @@ Describe "The Application" {
 	Context "when different bases" {
 		It "shall convert" {
 			3, 6, 5, 7 |
-				Sort-Object -Descending {(++$script:i)} |
 				ConvertTo-Base -SourceBase 8 -DestinationBase 10 -DataStructure $dataStructure |
-				Should Be @(5, 5, 9, 3)
+				Should Be @(1, 9, 6, 7)
 		}
 	}
 }

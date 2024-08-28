@@ -44,7 +44,11 @@ namespace Example.Application
             while (number > 0)
             {
                 number = Math.DivRem(number, DestinationBase, out var remainder);
-                WriteObject(remainder);
+                DataStructure.Push(remainder);
+            }
+            while (DataStructure.Count > 0)
+            {
+                WriteObject(DataStructure.Pop());
             }
         }
     }
