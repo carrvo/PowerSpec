@@ -3,6 +3,7 @@ using assembly ..\Example.ThirdParty.TrueStack\bin\Debug\netstandard2.0\Example.
 using assembly ..\Example.ThirdParty.ListStack\bin\Debug\netstandard2.0\Example.ThirdParty.ListStack.dll
 using assembly ..\Example.ThirdParty.FakeStack\bin\Debug\netstandard2.0\Example.ThirdParty.FakeStack.dll
 using module ..\..\Framework\PowerSpec\PowerSpec.psm1
+using assembly ..\..\..\..\..\.nuget\packages\newtonsoft.json\13.0.3\lib\netstandard2.0\Newtonsoft.Json.dll
 using module ..\Example.Application\bin\Debug\netstandard2.0\Example.Application.dll
 
 $specResult =  @(
@@ -10,49 +11,49 @@ $specResult =  @(
 	(New-Object -TypeName Example.ThirdParty.ListStack[string]),
 	(New-Object -TypeName Example.ThirdParty.FakeStack[string])
 ) | Test-Specification -API (Get-Module Example.Specification)
+Export-SpecificationResult -SpecificationResults $specResult -Path "..\Example.Application\bin\Debug\netstandard2.0\Example.Specification.json"
 
-Describe "Third Party Acceptance" {
-	It "TrueStack is accepted" {
-		$specResult |
-			Where-Object {$_.ModuleId.Name -EQ 'Example.Specification'} |
-			Where-Object {$_.TypeId.Name -EQ 'TrueStack`1'} |
-			Select-Object -ExpandProperty TestResultIds |
-			Select-Object -ExpandProperty Passed |
-			Should Be $true
-	}
-	It "ListStack is accepted" {
-		$specResult |
-			Where-Object {$_.ModuleId.Name -EQ 'Example.Specification'} |
-			Where-Object {$_.TypeId.Name -EQ 'ListStack`1'} |
-			Select-Object -ExpandProperty TestResultIds |
-			Select-Object -ExpandProperty Passed |
-			Should Be $true
-	}
-	It "FakeStack is NOT accepted" {
-		$testResults = $specResult |
-			Where-Object {$_.ModuleId.Name -EQ 'Example.Specification'} |
-			Where-Object {$_.TypeId.Name -EQ 'FakeStack`1'} |
-			Select-Object -ExpandProperty TestResultIds |
-			Select-Object -ExpandProperty Passed
-		($false -in $testResults) | Should Be $true
-	}
-}
-
-Describe "The Application" {
-	$dataStructure = New-Object -TypeName Example.ThirdParty.TrueStack[int]
-	Context "when the same base" {
-		It "shall be the same" {
-			$digits = 2, 4, 3
-			$digits |
-				ConvertTo-Base -SourceBase 10 -DestinationBase 10 -DataStructure $dataStructure |
-				Should Be $digits
+Describe "The Application - Third Party Acceptance" {
+	Context "TrueStack is accepted" {
+		$dataStructure = New-Object -TypeName Example.ThirdParty.TrueStack[int]
+		It "when the same base it shall be the same" {
+				$digits = 2, 4, 3
+				$digits |
+					ConvertTo-Base -SourceBase 10 -DestinationBase 10 -DataStructure $dataStructure |
+					Should Be $digits
+		}
+		It "when different bases it shall convert" {
+				3, 6, 5, 7 |
+					ConvertTo-Base -SourceBase 8 -DestinationBase 10 -DataStructure $dataStructure |
+					Should Be @(1, 9, 6, 7)
 		}
 	}
-	Context "when different bases" {
-		It "shall convert" {
-			3, 6, 5, 7 |
-				ConvertTo-Base -SourceBase 8 -DestinationBase 10 -DataStructure $dataStructure |
-				Should Be @(1, 9, 6, 7)
+	Context "ListStack is accepted" {
+		[Example.Specification.IStack[int]]$dataStructure = New-Object -TypeName Example.ThirdParty.ListStack[int]
+		It "when the same base it shall be the same" {
+				$digits = 2, 4, 3
+				$digits |
+					ConvertTo-Base -SourceBase 10 -DestinationBase 10 -DataStructure $dataStructure |
+					Should Be $digits
+		}
+		It "when different bases it shall convert" {
+				3, 6, 5, 7 |
+					ConvertTo-Base -SourceBase 8 -DestinationBase 10 -DataStructure $dataStructure |
+					Should Be @(1, 9, 6, 7)
+		}
+	}
+	Context "FakeStack is NOT accepted" {
+		$dataStructure = New-Object -TypeName Example.ThirdParty.FakeStack[int]
+		It "when the same base it shall throw" {
+				$digits = 2, 4, 3
+				{ $digits |
+					ConvertTo-Base -SourceBase 10 -DestinationBase 10 -DataStructure $dataStructure } |
+					Should Throw
+		}
+		It "when different bases it shall throw" {
+				{ 3, 6, 5, 7 |
+					ConvertTo-Base -SourceBase 8 -DestinationBase 10 -DataStructure $dataStructure } |
+					Should Throw
 		}
 	}
 }
