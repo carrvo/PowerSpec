@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{F68BFB94-9C76-4A25-82A5-24369112A8AF}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContrivedExample", "ContrivedExample", "{1CB60038-B4DF-4F85-8313-5A4A3A207334}"
 EndProject
@@ -29,7 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.ThirdParty.TrueStac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.ThirdParty.ListStack", "BinaryCmdletExample\Example.ThirdParty.ListStack\Example.ThirdParty.ListStack.csproj", "{04D80004-5058-466E-9602-CAF49EB6BBD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.ThirdParty.FakeStack", "BinaryCmdletExample\Example.ThirdParty.FakeStack\Example.ThirdParty.FakeStack.csproj", "{4669310E-6F0B-45E9-B8A2-B64C456DA161}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.ThirdParty.FakeStack", "BinaryCmdletExample\Example.ThirdParty.FakeStack\Example.ThirdParty.FakeStack.csproj", "{4669310E-6F0B-45E9-B8A2-B64C456DA161}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
