@@ -55,8 +55,8 @@ Update `<Specification Name>.Tests.ps1` with technical information about testing
 
 First, if you are writing requirements for a data structure, then you need to declare it at the top of the file.
 This allows third-parties (including yourself) to implement different solutions to your specification.
-For those looking for requirements against a single-solution specification then the following is not necessary;
-in fact, PowerSpec is not necessary and you can freely follow or not the methodology laid out.
+*For those looking for requirements against a single-solution specification then the following is not necessary;
+in fact, PowerSpec is not necessary and you can freely follow or not the methodology laid out.*
 ```powershell
 #Requires -Module <Specification Module>
 Param(
@@ -89,7 +89,7 @@ Param(
 Next, add scripting code within `It` blocks to define the API signatures and how it will be used.
 Make should to query for system responses and feed them into `Should` statements to ensure that the requirement is being met.
 For [Pester v3](https://github.com/pester/Pester/wiki/Should-v3) order is preserved, but be careful about variable scope
-(for [Pester v5](https://pester.dev/docs/quick-start) there was a breaking change so that order is intentionally no longer preserved, among other differences).
+(*for [Pester v5](https://pester.dev/docs/quick-start) there was a breaking change so that order is intentionally no longer preserved, among other differences*).
 You can use the syntax `$script:myVariable` for scope sharing.
 ```powershell
 Describe "The IStack" {
@@ -168,7 +168,7 @@ PS> New-ModuleManifest -Author '<your name>' -Company 'your organization' -Requi
 
 A [Full Example](./BinaryCmdletExample/Example.Specification/) has been included for you to explore.
 
-The specification can now be run through PowerSpec!
+The specification can now be run through PowerSpec! (This can be seen [here](./BinaryCmdletExample/Example.Application.Tests/Example.Application.Tests.ps1).)
 ```powershell
 PS> Import-Module <Specification Module path>
 PS> Import-Module PowerSpec
@@ -180,7 +180,7 @@ And later exported for your application to verify third-party implementations.
 PS> Export-SpecificationResult -SpecificationResults $specResult -Path "Application Specification config path.json"
 ```
 
-Note: Architects should be prepared to negotiate the signatures with developers.
+*Note: Architects should be prepared to negotiate the signatures with developers.*
 
 ### 3. Developers
 Create coding projects to implement!
@@ -189,10 +189,10 @@ If you are looking to implement a binary cmdlet, then there is also an [example]
 You can also read on for a few helpful hints.
 
 #### Low Quality
-TODO: basic implementation of binary cmdlets from a signature.
+*TODO: basic implementation of binary cmdlets from a signature.*
 
 #### Mid Quality
-TODO: fleshed out implementation of binary cmdlets.
+*TODO: fleshed out implementation of binary cmdlets.*
 
 You should also be writing additional testing outside the specification for design decisions, PSR, robustness, additional features, and unit testing.
 
