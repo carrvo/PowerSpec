@@ -12,6 +12,8 @@ PowerSpec is intended to be used for integration and public API purposes. It may
 WARNING: PowerSpec is ***NOT*** a replacement for manual Quality Assurance (QA) testing, smoke testing, visual testing, documentation testing, exploratory testing, among other practices.
 It is merely meant to serve as testable requirements that enhance API development and integration practices.
 
+*TODO: publish to [PowerShell Gallery](https://www.powershellgallery.com/)*
+
 ## Quick Start
 Note that while the example shown below is for an application in binary cmdlet form,
 it applies to other applications as well (console applications, REST APIs, et cetera) but with the API looking different.
