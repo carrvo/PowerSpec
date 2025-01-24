@@ -31,11 +31,8 @@ namespace Example.Application
 
         protected override void BeginProcessing()
         {
-            //JObject specResults = JObject.Parse(File.ReadAllText(SpecPath)); // gives error
-            //JArray specResults = (JArray)JsonConvert.DeserializeObject(File.ReadAllText(SpecPath)); // kudos to https://stackoverflow.com/a/24645588
             JArray specResults = JArray.Parse(File.ReadAllText(SpecPath));
             if (! specResults
-                //.Children()
                 .Where(x => x["ModuleId"]["Name"].ToString() == "Example.Specification")
                 .Where(x => x["TypeId"]["Name"].ToString() == DataStructure.GetType().Name)
                 .SelectMany(x => x["TestResultIds"].Children())
