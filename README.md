@@ -52,6 +52,8 @@ This file can then be run either by
 - `.\<Specification Name>.Tests.ps1` from a PowerShell command-line
 - `powershell.exe -File .\<Specification Name>.Tests.ps1` from other command-lines
 
+![Example output when running](./img/TestableRequirements.png)
+
 ### 2. Solution Architects, Standards Organizations
 Update `<Specification Name>.Tests.ps1` with technical information about testing and the API.
 
@@ -192,6 +194,8 @@ You can also read on for a few helpful hints.
 
 #### Low Quality
 *TODO: basic implementation of binary cmdlets from a signature.*
+
+![Map between PowerShell and C#](./img/BinaryCmdlets.png)
 
 #### Mid Quality
 *TODO: fleshed out implementation of binary cmdlets.*
